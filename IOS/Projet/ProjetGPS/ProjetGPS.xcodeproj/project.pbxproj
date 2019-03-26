@@ -16,6 +16,7 @@
 		2E819E162248C0480067019A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E819E152248C0480067019A /* main.m */; };
 		2E819E202248C0480067019A /* ProjetGPSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E819E1F2248C0480067019A /* ProjetGPSTests.m */; };
 		2E819E2B2248C0480067019A /* ProjetGPSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E819E2A2248C0480067019A /* ProjetGPSUITests.m */; };
+		2ED124E6224A6A1F004A2D18 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ED124E5224A6A1F004A2D18 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		2E819E262248C0480067019A /* ProjetGPSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjetGPSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E819E2A2248C0480067019A /* ProjetGPSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjetGPSUITests.m; sourceTree = "<group>"; };
 		2E819E2C2248C0480067019A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ED124E5224A6A1F004A2D18 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ED124E6224A6A1F004A2D18 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +91,7 @@
 				2E819E1E2248C0480067019A /* ProjetGPSTests */,
 				2E819E292248C0480067019A /* ProjetGPSUITests */,
 				2E819E012248C03D0067019A /* Products */,
+				2ED124E4224A6A1F004A2D18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +139,14 @@
 				2E819E2C2248C0480067019A /* Info.plist */,
 			);
 			path = ProjetGPSUITests;
+			sourceTree = "<group>";
+		};
+		2ED124E4224A6A1F004A2D18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ED124E5224A6A1F004A2D18 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

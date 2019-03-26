@@ -9,10 +9,10 @@
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
-
 @end
 
 @implementation FirstViewController
+@synthesize carte;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +33,18 @@
     [messages addObject:message];
     
     _dataRecievedTextView.text = message;
-    NSLog(@"%@", message);
+  //  NSLog(@"%@", message);
+    
+    NSString *ligne = [message componentsSeparatedByString:@"\n"][0];
+    NSLog(@"ligne:  %@", ligne);
+    NSArray *donnees = [ligne componentsSeparatedByString:@","];
+    if([donnees count] >4){
+        NSLog(@"données:  %@", [donnees objectAtIndexedSubscript:5]);
+        CLLocationDegrees longituge = [[donnees objectAtIndexedSubscript:3] doubleValue]/100;
+        CLLocationDegrees latitude = [[donnees objectAtIndexedSubscript:5] doubleValue]/100;
+        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(longituge, latitude);
+        [carte setCenterCoordinate:coord];
+    }
 }
 
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {

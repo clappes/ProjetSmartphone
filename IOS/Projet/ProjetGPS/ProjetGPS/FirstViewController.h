@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface FirstViewController : UIViewController<NSStreamDelegate>
 {
@@ -15,6 +16,7 @@
     
     NSInputStream   *inputStream;
     NSOutputStream  *outputStream;
+    MKMapView *carte;
     
     NSMutableArray  *messages;
 }
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *dataToSendText;
 @property (weak, nonatomic) IBOutlet UITextView *dataRecievedTextView;
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
+@property(retain, nonatomic) IBOutlet MKMapView * carte;
 
 
 @end

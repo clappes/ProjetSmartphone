@@ -1,25 +1,26 @@
 package grpproject.projetgps;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 class ClientThread extends Thread {
 
-    private volatile FirstActivity fa;
+    private volatile int PORT=55555;
+    private volatile String IP="192.168.43.68";
+    private volatile int REFRESH_TIME=1;
+    private volatile FragmentOne fa;
     private volatile Socket socket;
     private volatile BufferedReader br;
     private volatile boolean vrai;
     private volatile String etat;
 
 
-    ClientThread(FirstActivity fa){
+    ClientThread(FragmentOne fa){
         this.fa=fa;
         this.vrai=false;
         this.etat="DISCONNECTED";
@@ -62,10 +63,9 @@ class ClientThread extends Thread {
                 for(int i=0;i<18;i++) {
                     trame += br.readLine()+"\n";
                 }
-                this.fa.setMap(trame);
-                Log.v("THREADTRAME",trame);
+                analyseTrame(trame);
             }else{
-                TimeUnit.SECONDS.sleep(1);
+               TimeUnit.SECONDS.sleep(REFRESH_TIME);
                 Log.v("THREADTIME","SYNCHRO");
                 if(!br.ready()) {
                     this.etat="CONNEXION_INTERRUPTED";
@@ -80,12 +80,22 @@ class ClientThread extends Thread {
         }
     }
 
+    private void analyseTrame(String s){
+        String lignes[]=s.split("\n");
+        for(String ligne: lignes){
+                if(ligne.startsWith("$GPRMC")) {
+                    String[] datas=ligne.split(",");
+                    this.fa.setMap(datas);
+                }
+        }
+    }
+
     private boolean connexion(){
         try {
-            this.fa.setLog("Search...");
+            this.fa.setLog("Connecting to host...");
             this.etat="SEARCH";
             this.fa.etatButtonStart(false);
-            socket=new Socket("192.168.43.68",55555);
+            socket=new Socket(IP,PORT);
             br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.fa.setLog("Connecté...");
             this.etat="CONNECTED";
@@ -107,5 +117,11 @@ class ClientThread extends Thread {
         this.vrai = true;
     }
     public String getEtat(){return this.etat;}
+    public void setPORT(int port){PORT=port;}
+    public void setIP(String ip){IP=ip;}
+    public void setRef(int time){REFRESH_TIME=time;}
+    public String getIp(){ return IP; }
+    public int getPort(){return PORT; }
+    public int getRef(){return REFRESH_TIME; }
 
 }

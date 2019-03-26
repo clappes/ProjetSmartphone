@@ -1,25 +1,23 @@
 package grpproject.projetgps;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 class ClientThread extends Thread {
 
-    private volatile FirstActivity fa;
+    private volatile FragmentOne fa;
     private volatile Socket socket;
     private volatile BufferedReader br;
     private volatile boolean vrai;
     private volatile String etat;
 
 
-    ClientThread(FirstActivity fa){
+    ClientThread(FragmentOne fa){
         this.fa=fa;
         this.vrai=false;
         this.etat="DISCONNECTED";
@@ -62,8 +60,7 @@ class ClientThread extends Thread {
                 for(int i=0;i<18;i++) {
                     trame += br.readLine()+"\n";
                 }
-                this.fa.setMap(trame);
-                Log.v("THREADTRAME",trame);
+                analyseTrame(trame);
             }else{
                 TimeUnit.SECONDS.sleep(1);
                 Log.v("THREADTIME","SYNCHRO");
@@ -80,9 +77,21 @@ class ClientThread extends Thread {
         }
     }
 
+    private void analyseTrame(String s){
+        String lignes[]=s.split("\n");
+        for(String ligne: lignes){
+                if(ligne.startsWith("$GPRMC")) {
+                    String[] datas=ligne.split(",");
+                    this.fa.setVitesse(datas[7]);
+                    this.fa.setLatitude(datas[4]+" "+datas[3]);
+                    this.fa.setLongitude(datas[6]+" "+datas[5]);
+                }
+        }
+    }
+
     private boolean connexion(){
         try {
-            this.fa.setLog("Search...");
+            this.fa.setLog("Connecting to host...");
             this.etat="SEARCH";
             this.fa.etatButtonStart(false);
             socket=new Socket("192.168.43.68",55555);

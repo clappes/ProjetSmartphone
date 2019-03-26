@@ -15,7 +15,7 @@ import android.widget.Button;
  */
 public class FragmentTwo extends Fragment {
 
-    private Button quit;
+    private Button lancer;
 
     public FragmentTwo() {
         // Required empty public constructor
@@ -28,18 +28,17 @@ public class FragmentTwo extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_two, container, false);
 
-        Intent intent = new Intent(getActivity(), AccActivity.class);
-        startActivity(intent);
 
+        lancer = view.findViewById(R.id.frag2_simu);
+        lancer.setText("Lancer Simu");
 
-        quit = view.findViewById(R.id.frag2_quit);
-        quit.setText("QUITTER");
-
-        quit.setOnClickListener(new View.OnClickListener() {
+        lancer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AccActivity)getContext()).finish();
-                System.out.println("fini");
+
+                Intent intent = new Intent(getActivity(), AccActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -47,12 +46,12 @@ public class FragmentTwo extends Fragment {
 
     }
 
-    public Button getQuit() {
-        return quit;
+    public Button getLancer() {
+        return lancer;
     }
 
-    public void setQuit(Button quit) {
-        this.quit = quit;
+    public void setLancer(Button lancer) {
+        this.lancer = lancer;
     }
 
 

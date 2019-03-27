@@ -12,11 +12,12 @@
 @end
 
 @implementation FirstViewController
-@synthesize carte, longitude, latitude;
+@synthesize carte, longitude, latitude,polyline,mapPointArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    mapPointArray = [NSMutableArray array];
+    carte.delegate = self;
     _connectedLabel.text = @"Disconnected";
 }
 
@@ -42,48 +43,73 @@
         NSArray *donnees = [ligne componentsSeparatedByString:@","];
         if([donnees count] >4){
             
-            self.carte.showsUserLocation=YES;
-           
-            NSString *longi = [donnees objectAtIndexedSubscript:5];
-            NSArray *arrayLongitude = [longi componentsSeparatedByString:@"."];
-            NSString *x = [arrayLongitude[0] substringFromIndex:[arrayLongitude[0] length]-2];
-            NSString *lg = [arrayLongitude[0] substringToIndex:[arrayLongitude[0] length]-2];
-            NSString *virgule = [NSString stringWithFormat:@"%@.%@",x,arrayLongitude[1]];
-            
-            double val = [lg doubleValue] + [virgule doubleValue]/60;
-            longitude.text = [NSString stringWithFormat:@"%f",val];
-            CLLocationDegrees longitudePoint = val;
-            
-            
-            NSString *lat = [donnees objectAtIndexedSubscript:3];
-            NSArray *arrayLatitude = [lat componentsSeparatedByString:@"."];
-            NSString *y = [arrayLatitude[0] substringFromIndex:[arrayLatitude[0] length]-2];
-            NSString *lt = [arrayLatitude[0] substringToIndex:[arrayLatitude[0] length]-2];
-            NSString *vir = [NSString stringWithFormat:@"%@.%@",y,arrayLatitude[1]];
-            
-            double val2 = [lt doubleValue] + [vir doubleValue]/60;
-            latitude.text = [NSString stringWithFormat:@"%f",val2];
-            CLLocationDegrees latitudePoint = val2;
-           
-            
-            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(latitudePoint, longitudePoint);
-            [carte setCenterCoordinate:coord];
-            
-            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudePoint longitude:longitudePoint   ];
-          
-            MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
-            annotation.coordinate = location.coordinate;
-            [carte addAnnotation:annotation];
-            
-            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:[coordinates length]];
-            [carte addOverlay:polyline];
-            self.polyline = polyline;
-            
-            lineView = [[MKPolylineView alloc]initWithPolyline:self.polyline];
-            lineView.strokeColor = [UIColor redColor];
-            lineView.lineWidth = 5;
+            if ([[donnees objectAtIndexedSubscript:2] isEqualToString:@"A"]) {
+               
+                self.carte.showsUserLocation=YES;
+                
+                NSString *longi = [donnees objectAtIndexedSubscript:5];
+                NSArray *arrayLongitude = [longi componentsSeparatedByString:@"."];
+                NSString *x = [arrayLongitude[0] substringFromIndex:[arrayLongitude[0] length]-2];
+                NSString *lg = [arrayLongitude[0] substringToIndex:[arrayLongitude[0] length]-2];
+                NSString *virgule = [NSString stringWithFormat:@"%@.%@",x,arrayLongitude[1]];
+                
+                
+                double val = [lg doubleValue] + [virgule doubleValue]/60;
+                if ([[donnees objectAtIndexedSubscript:6] isEqualToString:@"W"]) {
+                    val = -val;
+                }
+                longitude.text = [NSString stringWithFormat:@"%f",val];
+                CLLocationDegrees longitudePoint = val;
+                
+                
+                NSString *lat = [donnees objectAtIndexedSubscript:3];
+                NSArray *arrayLatitude = [lat componentsSeparatedByString:@"."];
+                NSString *y = [arrayLatitude[0] substringFromIndex:[arrayLatitude[0] length]-2];
+                NSString *lt = [arrayLatitude[0] substringToIndex:[arrayLatitude[0] length]-2];
+                NSString *vir = [NSString stringWithFormat:@"%@.%@",y,arrayLatitude[1]];
+                
+                double val2 = [lt doubleValue] + [vir doubleValue]/60;
+                if ([[donnees objectAtIndexedSubscript:4] isEqualToString:@"S"]) {
+                    val2 = -val2;
+                }
+                latitude.text = [NSString stringWithFormat:@"%f",val2];
+                CLLocationDegrees latitudePoint = val2;
+                
+                
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(latitudePoint, longitudePoint);
+                [mapPointArray addObject:[NSValue valueWithMKCoordinate:coord]];
+                [carte setCenterCoordinate:coord];
+                
+                CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudePoint longitude:longitudePoint   ];
+                
+                MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
+                annotation.coordinate = location.coordinate;
+                [carte addAnnotation:annotation];
+                
+                CLLocationCoordinate2D coordinates[[mapPointArray count]];
+                for (NSInteger i=0; i<[mapPointArray count]; i++) {
+                    CLLocationCoordinate2D coord = mapPointArray[i].MKCoordinateValue;
+                    coordinates[i] = coord;
+                }
+                MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:[mapPointArray count]];
+                [carte addOverlay:polyline];
+            }
+        
         
     }
+    }
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    if (![overlay isKindOfClass:[MKPolygon class]]) {
+        MKPolyline *route = overlay;
+        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:route];
+        renderer.strokeColor = [UIColor redColor];
+        renderer.lineWidth = 3.0;
+        return renderer;
+    } else {
+        return nil;
     }
 }
 

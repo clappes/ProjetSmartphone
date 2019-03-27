@@ -32,9 +32,15 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,47 +51,58 @@ import java.util.List;
  */
 public class FragmentOne extends Fragment implements OnMapReadyCallback{
 
-    private TextView vitesse,lat,lon;
-    private TextView log;
+    private TextView vitesse,lat,lon,log;
     private Button start;
     private ImageButton setting;
     private ClientThread ct;
     private GoogleMap gmap;
     private PolylineOptions trajet;
+    private int nbrTrame;
+    private MarkerOptions bateau;
 
     public FragmentOne() {
         // Required empty public constructor
+
+        //Thread
+        ct=new ClientThread(this);
+        ct.start();
+
     }
 
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        nbrTrame=0;
+
         // Inflate the layout for this fragment
         final View view=  inflater.inflate(R.layout.fragment_one, container, false);
+        Log.v("CREATEVIEW","NEW");
 
-
-        vitesse=view.findViewById(R.id.frag1_vitesse);
-
-        lon=view.findViewById(R.id.frag1_lon);
-
-        lat=view.findViewById(R.id.frag1_lat);
-
-        log=view.findViewById(R.id.frag1_log);
+        //objet de la vue$
+        vitesse = view.findViewById(R.id.frag1_vitesse);
+        lon = view.findViewById(R.id.frag1_lon);
+        lat = view.findViewById(R.id.frag1_lat);
+        log = view.findViewById(R.id.frag1_log);
         log.setText("Déconnecté...");
+        start = view.findViewById(R.id.frag1_start);
+        setting = view.findViewById(R.id.frag1_setting);
 
-        start=view.findViewById(R.id.frag1_start);
-        start.setText("START");
 
-        setting=view.findViewById(R.id.frag1_setting);
+        //Marker(drone)
+        if(bateau==null) {
+            bateau = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_boat_marker)).anchor(0.5f, 0.5f);
+        }
 
+        //Map
         ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.frag1_map)).getMapAsync(this);
 
+        //stop le thread
+        stop();
 
-        //Thread
-        ct=new ClientThread(this);
-        ct.start();
-
+        //boutton start/stop listener
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +114,7 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
             }
         });
 
+        //boutton open setting
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,16 +179,15 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
                     }
                 });
 
-
-
+                //Afficher popup
                 AlertDialog alert = builder.create();
-
                 alert.show();
             }
         });
 
         return view;
     }
+
     public void stop(){
         this.setting.setClickable(true);
         start.setText("START");
@@ -180,31 +197,59 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
 
     public void start(){
         this.setting.setClickable(false);
-        trajet=new PolylineOptions();
         start.setText("STOP");
+        trajet=new PolylineOptions().geodesic(true).color(Color.RED).width(8);
+        gmap.clear();
         ct.play();
     }
 
     public Button getStart(){ return this.start; }
     public GoogleMap getMap(){ return this.gmap; }
     public TextView getLog(){return this.log; }
-
-    public void setMap(String[] datas){
+    public void setMap(final String[] datas){
         setVitesse(datas[7]);
-        setLatitude(datas[4]+" "+datas[3]);
-        setLongitude(datas[6]+" "+datas[5]);
-        double lat=Double.parseDouble(datas[3])/100;
-        double lon=Double.parseDouble(datas[5])/100;
 
-        Log.v("CALCULTRAJET","Lat:"+lat+" "+"Lon:"+lon);
 
-        trajet.add(new LatLng(37.35, -122.0));
-        trajet.add(new LatLng(37.75, -122.0));
-        trajet.add(new LatLng(37.75, -122.2));
-        trajet.add(new LatLng(37.35, -122.2));
-        trajet.add(new LatLng(37.35, -122.0));
-        gmap.addPolyline(trajet);
-        
+       this.getActivity().runOnUiThread(new Runnable(){
+            public void run(){
+                double lat=Double.parseDouble(datas[3])/100;
+                double lon=Double.parseDouble(datas[5])/100;
+
+                //Conversion
+                lat=((int)lat)+Double.parseDouble(datas[3].substring(datas[3].indexOf(".")-2))/60;
+                lon=((int)lon)+Double.parseDouble(datas[5].substring(datas[5].indexOf(".")-2))/60;
+
+
+                if(datas[4].equals("S")){
+                    lat=-1*lat;
+                }
+                if(datas[6].equals("O")){
+                    lon=-1*lon;
+                }
+
+                setLatitude(""+lat);
+                setLongitude(""+lon);
+                Log.v("CALCULCOOR",lat+" "+lon);
+
+                trajet.add(new LatLng(lat,lon));
+                gmap.clear();
+                gmap.addPolyline(trajet);
+                bateau.position(new LatLng(lat,lon));
+                gmap.addMarker(bateau);
+
+                if(nbrTrame%10==0) {
+                    gmap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(lat, lon))
+                            .zoom(17).build()));
+                }
+                nbrTrame++;
+            }
+        });
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        stop();
     }
 
     public void setVitesse(String s){vitesse.setText("Vitesse: "+s+" Km/h");}
@@ -220,11 +265,16 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
         }
         ct.setRef(Integer.parseInt(time));
     }
+    public ClientThread getCt(){return ct;}
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        gmap=googleMap;
+        gmap = googleMap;
         gmap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        if(trajet!=null){
+            gmap.addPolyline(trajet);
+            gmap.addMarker(bateau);
+        }
     }
 }

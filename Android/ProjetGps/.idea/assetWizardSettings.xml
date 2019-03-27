@@ -16,13 +16,28 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\Android\fond.jpg" />
-                                      <entry key="outputName" value="ic_action_setting" />
+                                      <entry key="imageAsset" value="D:\Android\icons8-yacht-24.png" />
+                                      <entry key="outputName" value="ic_boat_marker" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="5e5e5e" />
+                                      <entry key="themeColor" value="000000" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -47,7 +62,7 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="VRECT" />
-                                      <entry key="imageAsset" value="D:\Android\fond.jpg" />
+                                      <entry key="imageAsset" value="D:\Android\icons8-yacht-24.png" />
                                       <entry key="outputName" value="ic_fond" />
                                     </map>
                                   </option>
@@ -58,7 +73,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

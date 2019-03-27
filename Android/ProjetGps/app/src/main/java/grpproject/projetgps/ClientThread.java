@@ -1,5 +1,6 @@
 package grpproject.projetgps;
 
+import android.support.annotation.UiThread;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -25,6 +26,7 @@ class ClientThread extends Thread {
         this.vrai=false;
         this.etat="DISCONNECTED";
     }
+
 
     @Override
     public void run() {
@@ -85,7 +87,8 @@ class ClientThread extends Thread {
         for(String ligne: lignes){
                 if(ligne.startsWith("$GPRMC")) {
                     String[] datas=ligne.split(",");
-                    this.fa.setMap(datas);
+                    if(datas[2].equals("A"))
+                        this.fa.setMap(datas);
                 }
         }
     }

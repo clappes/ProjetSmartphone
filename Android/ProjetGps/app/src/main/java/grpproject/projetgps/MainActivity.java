@@ -1,31 +1,40 @@
 package grpproject.projetgps;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TextView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
-import java.io.*;
-import java.net.*;
-import java.util.concurrent.TimeUnit;
+public class MainActivity extends FragmentActivity {
 
-public class MainActivity extends Activity {
+    private TabLayout tl;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
 
-    private ViewGen vg;
 
-    protected void onCreate(Bundle saveInstance){
+       protected void onCreate(Bundle saveInstance){
         super.onCreate(saveInstance);
-        final ActionBar actionBar = getActionBar();
-        vg=new ViewGen(this);
-        TextView tw=new TextView(this);
-        tw.setText("Activity Home");
-        vg.addView(tw);
-        setContentView(vg);
+        setContentView(R.layout.layout);
+
+
+        //TabLayout
+        tl=findViewById(R.id.tabs);
+        tl.setTabMode(TabLayout.MODE_FIXED);
+
+        //ViewPager
+        viewPager=findViewById(R.id.viewp);
+        tl.setupWithViewPager(viewPager);
+
+        //Recuperation FragmentManager
+        adapter=new ViewPagerAdapter( getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        //Icons tabs
+        tl.getTabAt(0).setIcon(R.drawable.ic_action_home);
+        tl.getTabAt(1).setIcon(R.drawable.ic_action_drawmap);
+        tl.getTabAt(2).setIcon(R.drawable.ic_action_editmap);
+        tl.getTabAt(3).setIcon(R.drawable.ic_action_control);
+
     }
 
 }

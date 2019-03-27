@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *dataToSendText;
 @property (weak, nonatomic) IBOutlet UITextView *dataRecievedTextView;
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *latitude;
+@property (weak, nonatomic) IBOutlet UILabel *longitude;
 @property(retain, nonatomic) IBOutlet MKMapView * carte;
 
 

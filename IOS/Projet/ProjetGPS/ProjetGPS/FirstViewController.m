@@ -12,7 +12,7 @@
 @end
 
 @implementation FirstViewController
-@synthesize carte;
+@synthesize carte, longitude, latitude;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,14 +36,54 @@
   //  NSLog(@"%@", message);
     
     NSString *ligne = [message componentsSeparatedByString:@"\n"][0];
-    NSLog(@"ligne:  %@", ligne);
-    NSArray *donnees = [ligne componentsSeparatedByString:@","];
-    if([donnees count] >4){
-        NSLog(@"données:  %@", [donnees objectAtIndexedSubscript:5]);
-        CLLocationDegrees longituge = [[donnees objectAtIndexedSubscript:3] doubleValue]/100;
-        CLLocationDegrees latitude = [[donnees objectAtIndexedSubscript:5] doubleValue]/100;
-        CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(longituge, latitude);
-        [carte setCenterCoordinate:coord];
+    if([ligne hasPrefix:@"$GPRMC"]){
+        
+        NSLog(@"ligne:  %@", ligne);
+        NSArray *donnees = [ligne componentsSeparatedByString:@","];
+        if([donnees count] >4){
+            
+            self.carte.showsUserLocation=YES;
+           
+            NSString *longi = [donnees objectAtIndexedSubscript:5];
+            NSArray *arrayLongitude = [longi componentsSeparatedByString:@"."];
+            NSString *x = [arrayLongitude[0] substringFromIndex:[arrayLongitude[0] length]-2];
+            NSString *lg = [arrayLongitude[0] substringToIndex:[arrayLongitude[0] length]-2];
+            NSString *virgule = [NSString stringWithFormat:@"%@.%@",x,arrayLongitude[1]];
+            
+            double val = [lg doubleValue] + [virgule doubleValue]/60;
+            longitude.text = [NSString stringWithFormat:@"%f",val];
+            CLLocationDegrees longitudePoint = val;
+            
+            
+            NSString *lat = [donnees objectAtIndexedSubscript:3];
+            NSArray *arrayLatitude = [lat componentsSeparatedByString:@"."];
+            NSString *y = [arrayLatitude[0] substringFromIndex:[arrayLatitude[0] length]-2];
+            NSString *lt = [arrayLatitude[0] substringToIndex:[arrayLatitude[0] length]-2];
+            NSString *vir = [NSString stringWithFormat:@"%@.%@",y,arrayLatitude[1]];
+            
+            double val2 = [lt doubleValue] + [vir doubleValue]/60;
+            latitude.text = [NSString stringWithFormat:@"%f",val2];
+            CLLocationDegrees latitudePoint = val2;
+           
+            
+            CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(latitudePoint, longitudePoint);
+            [carte setCenterCoordinate:coord];
+            
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudePoint longitude:longitudePoint   ];
+          
+            MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
+            annotation.coordinate = location.coordinate;
+            [carte addAnnotation:annotation];
+            
+            MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:[coordinates length]];
+            [carte addOverlay:polyline];
+            self.polyline = polyline;
+            
+            lineView = [[MKPolylineView alloc]initWithPolyline:self.polyline];
+            lineView.strokeColor = [UIColor redColor];
+            lineView.lineWidth = 5;
+        
+    }
     }
 }
 

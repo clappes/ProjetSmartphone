@@ -235,6 +235,7 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
                 gmap.clear();
                 gmap.addPolyline(trajet);
                 bateau.position(new LatLng(lat,lon));
+                //datas[8];
                 gmap.addMarker(bateau);
 
                 if(nbrTrame%10==0) {

@@ -1,0 +1,266 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+MERGED from [com.android.support:design:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\3927c32552ed09481f22baa5b7bcebeb\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fd24e92fac9308293417cda2b336bbcf\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\989dfeff7b002f032f5c54a3e5cd5a98\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:17:1-38:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\57f08f0104563a214feb0c037b019d76\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\64386257fb0eb2934cf01cde36e6e152\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\acdb4f75b44c0318240c4414a104853e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d6943a5e93f4ba14871b453d42a981ea\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7185769ad46d84ad04d29e9c136e1498\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\4a7aeca279f8d3714af2db7965e7a35f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\03bc8af1036ec7581e5390a34f6a8f6f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2dede5c499ec64421de86297374d32d3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7e231d31e862453c53a92bc6f4a43ee5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\42a9dab317744dcdb79256fcbed000a1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\7b9e561cbef5c1c78987a86ec7b4f3ce\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\053734d4b826f448fd34c80dcecc87bb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\888a93293b30a46813b6939d4773e4c0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\e317ba1b6514c923a05fd1f047fea361\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\fe1ba645af07a9319adcc65444abc646\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\520e6461014894a3f3442b17d0bd8f7b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\c2252bac5e4cd8de69df745a571f4b11\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\9f48157016be758eb23a9e802d95e181\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\c23eff40f42a2cca2cc98396e79fff6d\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\26aafd6f704eca4851ea05b2a8ca3697\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\414a0d3135d35238bcb41e3280e85c91\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7f94f287f9d2e74e439872305abb8268\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\2778a9034abd6a8403a916ed478ce27e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\a3b71ced11661b6230d79e223bce870a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\c764026e65c033a211f34585859dd451\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\72113c688e0d5da3630194ab4bb497d7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\e9ea7f029881b4118babb833f872fe57\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d529e2f7316738302df44ac3abdb658a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\b6c478b24d1836de937e8c16b5b52f2a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bdc6a8a94529997c9d7405f021c8ca33\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+	package
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:3:5-35
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:1-57:12
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:2:11-69
+uses-feature#0x00020000
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:5:5-7:35
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:26:5-28:35
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:6:9-41
+	android:required
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:7:9-32
+uses-permission#android.permission.INTERNET
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:9:5-67
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:9:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:10:5-79
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:10:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:11:5-76
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:11:22-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:12:22-78
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:13:5-75
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:13:22-72
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:14:5-80
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:14:22-77
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:21:5-79
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:21:22-76
+application
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:23:5-55:19
+MERGED from [com.android.support:design:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\3927c32552ed09481f22baa5b7bcebeb\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\3927c32552ed09481f22baa5b7bcebeb\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\989dfeff7b002f032f5c54a3e5cd5a98\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\989dfeff7b002f032f5c54a3e5cd5a98\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\57f08f0104563a214feb0c037b019d76\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\57f08f0104563a214feb0c037b019d76\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\c23eff40f42a2cca2cc98396e79fff6d\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\c23eff40f42a2cca2cc98396e79fff6d\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:28:9-35
+	android:label
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:26:9-41
+	android:roundIcon
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:27:9-59
+	android:icon
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:25:9-43
+	android:allowBackup
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:24:9-35
+	android:theme
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:29:9-40
+activity#grpproject.projetgps.MainActivity
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:30:9-39:20
+	android:screenOrientation
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:33:13-49
+	android:label
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:32:13-45
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:31:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:34:13-38:29
+action#android.intent.action.MAIN
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:35:17-69
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:35:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:37:17-77
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:37:27-74
+meta-data#com.google.android.gms.version
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:48:9-50:69
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:23:9-25:69
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:50:13-66
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:49:13-58
+meta-data#com.google.android.geo.API_KEY
+ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:51:9-53:55
+	android:value
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:53:13-52
+	android:name
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml:52:13-58
+uses-sdk
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\3927c32552ed09481f22baa5b7bcebeb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\3927c32552ed09481f22baa5b7bcebeb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fd24e92fac9308293417cda2b336bbcf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\fd24e92fac9308293417cda2b336bbcf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\989dfeff7b002f032f5c54a3e5cd5a98\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\989dfeff7b002f032f5c54a3e5cd5a98\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\57f08f0104563a214feb0c037b019d76\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\57f08f0104563a214feb0c037b019d76\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\1d97fff5fc974aa6e3d00e743c545311\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\64386257fb0eb2934cf01cde36e6e152\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\64386257fb0eb2934cf01cde36e6e152\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\acdb4f75b44c0318240c4414a104853e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\acdb4f75b44c0318240c4414a104853e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d6943a5e93f4ba14871b453d42a981ea\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\d6943a5e93f4ba14871b453d42a981ea\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7185769ad46d84ad04d29e9c136e1498\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\7185769ad46d84ad04d29e9c136e1498\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\4a7aeca279f8d3714af2db7965e7a35f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\4a7aeca279f8d3714af2db7965e7a35f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\03bc8af1036ec7581e5390a34f6a8f6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\03bc8af1036ec7581e5390a34f6a8f6f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2dede5c499ec64421de86297374d32d3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\2dede5c499ec64421de86297374d32d3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7e231d31e862453c53a92bc6f4a43ee5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\transition-28.0.0.aar\7e231d31e862453c53a92bc6f4a43ee5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\42a9dab317744dcdb79256fcbed000a1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\loader-28.0.0.aar\42a9dab317744dcdb79256fcbed000a1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\7b9e561cbef5c1c78987a86ec7b4f3ce\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewpager-28.0.0.aar\7b9e561cbef5c1c78987a86ec7b4f3ce\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\053734d4b826f448fd34c80dcecc87bb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\coordinatorlayout-28.0.0.aar\053734d4b826f448fd34c80dcecc87bb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\888a93293b30a46813b6939d4773e4c0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\drawerlayout-28.0.0.aar\888a93293b30a46813b6939d4773e4c0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\e317ba1b6514c923a05fd1f047fea361\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\slidingpanelayout-28.0.0.aar\e317ba1b6514c923a05fd1f047fea361\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\fe1ba645af07a9319adcc65444abc646\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\customview-28.0.0.aar\fe1ba645af07a9319adcc65444abc646\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\520e6461014894a3f3442b17d0bd8f7b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\swiperefreshlayout-28.0.0.aar\520e6461014894a3f3442b17d0bd8f7b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\c2252bac5e4cd8de69df745a571f4b11\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\asynclayoutinflater-28.0.0.aar\c2252bac5e4cd8de69df745a571f4b11\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\9f48157016be758eb23a9e802d95e181\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-media-compat-28.0.0.aar\9f48157016be758eb23a9e802d95e181\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\1c3322c6d1348f45fb02e94a78555abf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\c23eff40f42a2cca2cc98396e79fff6d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\c23eff40f42a2cca2cc98396e79fff6d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\26aafd6f704eca4851ea05b2a8ca3697\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cursoradapter-28.0.0.aar\26aafd6f704eca4851ea05b2a8ca3697\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\414a0d3135d35238bcb41e3280e85c91\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\cardview-v7-28.0.0.aar\414a0d3135d35238bcb41e3280e85c91\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7f94f287f9d2e74e439872305abb8268\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\7f94f287f9d2e74e439872305abb8268\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\2778a9034abd6a8403a916ed478ce27e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\documentfile-28.0.0.aar\2778a9034abd6a8403a916ed478ce27e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\a3b71ced11661b6230d79e223bce870a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\localbroadcastmanager-28.0.0.aar\a3b71ced11661b6230d79e223bce870a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\c764026e65c033a211f34585859dd451\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\print-28.0.0.aar\c764026e65c033a211f34585859dd451\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\72113c688e0d5da3630194ab4bb497d7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.1.aar\72113c688e0d5da3630194ab4bb497d7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\e9ea7f029881b4118babb833f872fe57\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\interpolator-28.0.0.aar\e9ea7f029881b4118babb833f872fe57\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d529e2f7316738302df44ac3abdb658a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\d529e2f7316738302df44ac3abdb658a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\b6c478b24d1836de937e8c16b5b52f2a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\b6c478b24d1836de937e8c16b5b52f2a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bdc6a8a94529997c9d7405f021c8ca33\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bdc6a8a94529997c9d7405f021c8ca33\AndroidManifest.xml:20:5-44
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		ADDED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android\ProjetGps\app\src\main\AndroidManifest.xml
+uses-library#org.apache.http.legacy
+ADDED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:33:9-35:40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:16.1.0] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-maps-16.1.0.aar\f8f249d705ba45fb535eb6eeb225eb14\AndroidManifest.xml:34:13-50
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Flowzif\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\c54a61cf713218c86a4712cfbca53188\AndroidManifest.xml:24:13-79

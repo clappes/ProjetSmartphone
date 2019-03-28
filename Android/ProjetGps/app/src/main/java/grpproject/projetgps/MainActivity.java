@@ -34,6 +34,8 @@ public class MainActivity extends FragmentActivity {
         tl.getTabAt(1).setIcon(R.drawable.ic_action_drawmap);
         tl.getTabAt(2).setIcon(R.drawable.ic_action_editmap);
         tl.getTabAt(3).setIcon(R.drawable.ic_action_control);
+
+
     }
 
 

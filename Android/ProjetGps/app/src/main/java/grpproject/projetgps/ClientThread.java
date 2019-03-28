@@ -1,5 +1,6 @@
 package grpproject.projetgps;
 
+import android.support.annotation.UiThread;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -10,6 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 class ClientThread extends Thread {
 
+    private volatile int PORT=55555;
+    private volatile String IP="192.168.43.68";
+    private volatile int REFRESH_TIME=1;
     private volatile FragmentOne fa;
     private volatile Socket socket;
     private volatile BufferedReader br;
@@ -22,6 +26,7 @@ class ClientThread extends Thread {
         this.vrai=false;
         this.etat="DISCONNECTED";
     }
+
 
     @Override
     public void run() {
@@ -62,7 +67,7 @@ class ClientThread extends Thread {
                 }
                 analyseTrame(trame);
             }else{
-                TimeUnit.SECONDS.sleep(1);
+               TimeUnit.SECONDS.sleep(REFRESH_TIME);
                 Log.v("THREADTIME","SYNCHRO");
                 if(!br.ready()) {
                     this.etat="CONNEXION_INTERRUPTED";
@@ -82,9 +87,8 @@ class ClientThread extends Thread {
         for(String ligne: lignes){
                 if(ligne.startsWith("$GPRMC")) {
                     String[] datas=ligne.split(",");
-                    this.fa.setVitesse(datas[7]);
-                    this.fa.setLatitude(datas[4]+" "+datas[3]);
-                    this.fa.setLongitude(datas[6]+" "+datas[5]);
+                    if(datas[2].equals("A"))
+                        this.fa.setMap(datas);
                 }
         }
     }
@@ -94,7 +98,7 @@ class ClientThread extends Thread {
             this.fa.setLog("Connecting to host...");
             this.etat="SEARCH";
             this.fa.etatButtonStart(false);
-            socket=new Socket("192.168.43.68",55555);
+            socket=new Socket(IP,PORT);
             br=new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.fa.setLog("Connecté...");
             this.etat="CONNECTED";
@@ -116,5 +120,11 @@ class ClientThread extends Thread {
         this.vrai = true;
     }
     public String getEtat(){return this.etat;}
+    public void setPORT(int port){PORT=port;}
+    public void setIP(String ip){IP=ip;}
+    public void setRef(int time){REFRESH_TIME=time;}
+    public String getIp(){ return IP; }
+    public int getPort(){return PORT; }
+    public int getRef(){return REFRESH_TIME; }
 
 }

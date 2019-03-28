@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _ipAddressText = @"127.0.0.1";
+    _portText = @"55555";
     mapPointArray = [NSMutableArray array];
     carte.delegate = self;
     _connectedLabel.text = @"Disconnected";
@@ -78,10 +80,11 @@
                 
                 CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(latitudePoint, longitudePoint);
                 [mapPointArray addObject:[NSValue valueWithMKCoordinate:coord]];
-                [carte setCenterCoordinate:coord];
+                [carte setCenterCoordinate:coord animated:true];
                 
                 CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudePoint longitude:longitudePoint   ];
                 
+                [carte removeAnnotations:[carte annotations]];
                 MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
                 annotation.coordinate = location.coordinate;
                 [carte addAnnotation:annotation];
@@ -100,6 +103,33 @@
     }
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // If it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    // Handle any custom annotations.
+    if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        // Try to dequeue an existing pin view first.
+        MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
+        if (!pinView)
+        {
+            // If an existing pin view was not available, create one.
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
+            //pinView.animatesDrop = YES;
+            pinView.canShowCallout = YES;
+            pinView.image = [UIImage imageNamed:@"boat"];
+            pinView.calloutOffset = CGPointMake(0, 32);
+        } else {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     if (![overlay isKindOfClass:[MKPolygon class]]) {
@@ -112,6 +142,7 @@
         return nil;
     }
 }
+
 
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
     
@@ -170,8 +201,8 @@
 
 - (IBAction)connectToServer:(id)sender {
     
-    NSLog(@"Setting up connection to %@ : %i", _ipAddressText.text, [_portText.text intValue]);
-    CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (__bridge CFStringRef) _ipAddressText.text, [_portText.text intValue], &readStream, &writeStream);
+    NSLog(@"Setting up connection to %@ : %i", _ipAddressText, [_portText intValue]);
+    CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (__bridge CFStringRef) _ipAddressText, [_portText intValue], &readStream, &writeStream);
     
     messages = [[NSMutableArray alloc] init];
     
@@ -221,4 +252,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)btAlert:(id)sender {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Prametre"
+                                                                   message:@"Welcome to the world of iOS"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* save = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action){
+                                                   //Do Some action here
+                                                   UITextField *ip_textField = alert.textFields[0];
+                                                   UITextField *port_textField = alert.textFields[1];
+                                                   
+                                                   _ipAddressText = ip_textField.text;
+                                                   _portText = port_textField.text;
+                                                   
+                                               }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
+                                                       
+                                                       NSLog(@"cancel btn");
+                                                       
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                       
+                                                   }];
+    
+    [alert addAction:cancel];
+    [alert addAction:save];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"127.0.0.1";
+    }];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = @"55555";
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end

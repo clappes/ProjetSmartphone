@@ -20,11 +20,12 @@
     MKPolyline *polyline;
     NSMutableArray<NSValue*> *mapPointArray;
     
+    
     NSMutableArray  *messages;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *ipAddressText;
-@property (weak, nonatomic) IBOutlet UITextField *portText;
+@property (weak, nonatomic) NSString *ipAddressText;
+@property (weak, nonatomic) NSString *portText;
 @property (weak, nonatomic) IBOutlet UITextField *dataToSendText;
 @property (weak, nonatomic) IBOutlet UITextView *dataRecievedTextView;
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
@@ -33,6 +34,8 @@
 @property(retain, nonatomic) IBOutlet MKMapView * carte;
 @property (retain, nonatomic) MKPolyline *polyline;
 @property (strong, nonatomic) NSMutableArray<NSValue*> *mapPointArray;
+
+- (IBAction)btAlert:(id)sender;
 
 
 @end

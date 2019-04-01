@@ -25,6 +25,7 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -79,7 +80,6 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
 
         // Inflate the layout for this fragment
         final View view=  inflater.inflate(R.layout.fragment_one, container, false);
-        Log.v("CREATEVIEW","NEW");
 
         //objet de la vue$
         vitesse = view.findViewById(R.id.frag1_vitesse);
@@ -119,69 +119,78 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
             @Override
             public void onClick(View v) {
 
-                //Recupération valeur Thread
-                View vvv=inflater.inflate(R.layout.setting_layout,null);
-                EditText etip=vvv.findViewById(R.id.setting_ip);
-                etip.setText(ct.getIp());
-                EditText etport=vvv.findViewById(R.id.setting_port);
-                etport.setText(""+ct.getPort());
-                Spinner sp=vvv.findViewById(R.id.setting_spin);
-                ArrayList a=new ArrayList();
-                a.add(1); a.add(2); a.add(5); a.add(10);
-                sp.setSelection(a.indexOf(ct.getRef()));
+                if(ct.getVrai()){
+                    Toast.makeText(getContext(),"Paramétrage impossible : Thread en cours",Toast.LENGTH_LONG).show();
 
-                //popup
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("SETTING");
-                builder.setIcon(R.drawable.ic_action_setting);
-                builder.setView(vvv);
+                }else {
 
-                //boutton valider
-                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    //Recupération valeur Thread
+                    View vvv = inflater.inflate(R.layout.setting_layout, null);
+                    EditText etip = vvv.findViewById(R.id.setting_ip);
+                    etip.setText(ct.getIp());
+                    EditText etport = vvv.findViewById(R.id.setting_port);
+                    etport.setText("" + ct.getPort());
+                    Spinner sp = vvv.findViewById(R.id.setting_spin);
+                    ArrayList a = new ArrayList();
+                    a.add(1);
+                    a.add(2);
+                    a.add(5);
+                    a.add(10);
+                    sp.setSelection(a.indexOf(ct.getRef()));
 
-                        //Objet
-                        EditText etip=((AlertDialog) dialog).findViewById(R.id.setting_ip);
-                        EditText etport=((AlertDialog) dialog).findViewById(R.id.setting_port);
-                        Spinner spin=((AlertDialog) dialog).findViewById(R.id.setting_spin);
-                        //Test format ip
-                        if(etip.getText().toString().matches("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
-                                "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
-                                "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
-                                "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")  ){
+                    //popup
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("SETTING");
+                    builder.setIcon(R.drawable.ic_action_setting);
+                    builder.setView(vvv);
+
+                    //boutton valider
+                    builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            //Objet
+                            EditText etip = ((AlertDialog) dialog).findViewById(R.id.setting_ip);
+                            EditText etport = ((AlertDialog) dialog).findViewById(R.id.setting_port);
+                            Spinner spin = ((AlertDialog) dialog).findViewById(R.id.setting_spin);
+                            //Test format ip
+                            if (etip.getText().toString().matches("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")) {
 
                                 //modification des paramètre
-                                modifParam(etip.getText().toString(),etport.getText().toString(),
+                                modifParam(etip.getText().toString(), etport.getText().toString(),
                                         spin.getSelectedItem().toString().split(" ")[0]);
 
-                        }else if(!etip.getText().toString().equals("")) {
+                            } else if (!etip.getText().toString().equals("")) {
 
-                            //erreur ip
-                            AlertDialog.Builder erreur=new AlertDialog.Builder(getContext());
-                            erreur.setTitle("Erreur Paramètre");
-                            erreur.setMessage("Format IP invalid !");
-                            erreur.setNegativeButton("close", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    builder.show();
-                                }
-                            });
-                            erreur.show();
+                                //erreur ip
+                                final AlertDialog.Builder erreur = new AlertDialog.Builder(getContext());
+                                erreur.setTitle("Erreur Paramètre");
+                                erreur.setMessage("Format IP invalid !");
+                                erreur.setNegativeButton("close", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                erreur.show();
+
+                            }
                         }
-                    }
-                });
+                    });
 
-                //boutton cancel
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+                    //boutton cancel
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
 
-                //Afficher popup
-                AlertDialog alert = builder.create();
-                alert.show();
+                    //Afficher popup
+                    builder.show();
+                }
             }
         });
 
@@ -189,14 +198,14 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
     }
 
     public void stop(){
-        this.setting.setClickable(true);
         start.setText("START");
         ct.pause();
-
+        vitesse.setText("");
+        lat.setText("");
+        lon.setText("");
     }
 
     public void start(){
-        this.setting.setClickable(false);
         start.setText("STOP");
         trajet=new PolylineOptions().geodesic(true).color(Color.RED).width(8);
         gmap.clear();
@@ -223,19 +232,28 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
                 if(datas[4].equals("S")){
                     lat=-1*lat;
                 }
-                if(datas[6].equals("O")){
+                if(datas[6].equals("W")){
                     lon=-1*lon;
                 }
 
                 setLatitude(""+lat);
                 setLongitude(""+lon);
-                Log.v("CALCULCOOR",lat+" "+lon);
 
                 trajet.add(new LatLng(lat,lon));
                 gmap.clear();
                 gmap.addPolyline(trajet);
                 bateau.position(new LatLng(lat,lon));
-                //datas[8];
+
+                double direction=Double.parseDouble(datas[8]);
+                if(direction>180.0 && direction!=360.0) {
+                    bateau.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_boat_marker_rev));
+                    bateau.rotation((float) direction + 90 );
+                }else {
+                    bateau.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_boat_marker));
+                    bateau.rotation((float) direction - 90);
+                }
+
+
                 gmap.addMarker(bateau);
 
                 if(nbrTrame%10==0) {
@@ -265,6 +283,7 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
             ct.setPORT(Integer.parseInt(port));
         }
         ct.setRef(Integer.parseInt(time));
+        Toast.makeText(getContext(),"Paramètre IP modifié",Toast.LENGTH_LONG).show();
     }
     public ClientThread getCt(){return ct;}
 
@@ -272,7 +291,7 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gmap = googleMap;
-        gmap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        gmap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         if(trajet!=null){
             gmap.addPolyline(trajet);
             gmap.addMarker(bateau);

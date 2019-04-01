@@ -1071,6 +1071,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable fond
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_action_control
@@ -1079,11 +1080,13 @@ drawable ic_action_editmap
 drawable ic_action_home
 drawable ic_action_setting
 drawable ic_boat_marker
+drawable ic_boat_marker_rev
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_we_swipe_99
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1188,6 +1191,13 @@ id frag1_map
 id frag1_setting
 id frag1_start
 id frag1_vitesse
+id frag2_map
+id frag2_quit
+id frag2_simu
+id frag3_clear
+id frag3_map
+id frag3_tracer
+id frag3_vit
 id ghost_view
 id gone
 id group_divider
@@ -1206,12 +1216,14 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id lat
 id left
 id light
 id line1
 id line3
 id listMode
 id list_item
+id lon
 id masked
 id media_actions
 id message
@@ -1322,6 +1334,7 @@ id useLogo
 id view_offset_helper
 id viewp
 id visible
+id vitesse
 id wide
 id withText
 id wrap
@@ -1374,6 +1387,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_acc
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1393,6 +1407,7 @@ layout fragment_one
 layout fragment_three
 layout fragment_two
 layout layout
+layout marker
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action

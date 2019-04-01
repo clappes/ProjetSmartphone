@@ -18,6 +18,17 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -34,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="D:\Android\icons8-yacht-24.png" />
-                                      <entry key="outputName" value="ic_boat_marker" />
+                                      <entry key="imageAsset" value="C:\Users\Flowzif\Downloads\output-onlinepngtools.png" />
+                                      <entry key="outputName" value="ic_boat_marker_rev" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="000000" />
                                     </map>
@@ -62,8 +73,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="VRECT" />
-                                      <entry key="imageAsset" value="D:\Android\icons8-yacht-24.png" />
-                                      <entry key="outputName" value="ic_fond" />
+                                      <entry key="imageAsset" value="D:\fond.jpg" />
+                                      <entry key="outputName" value="ic_fond_home" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -73,7 +84,33 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="values">
+                          <map>
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="height" value="1255" />
+                            <entry key="outputName" value="ic_we_swipe_99" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="D:\Android\we-swipe-99.svg" />
+                            <entry key="width" value="1706" />
                           </map>
                         </option>
                       </PersistentState>

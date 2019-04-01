@@ -67,7 +67,7 @@ class ClientThread extends Thread {
                 }
                 analyseTrame(trame);
             }else{
-               TimeUnit.SECONDS.sleep(REFRESH_TIME);
+               TimeUnit.SECONDS.sleep(REFRESH_TIME+1);
                 Log.v("THREADTIME","SYNCHRO");
                 if(!br.ready()) {
                     this.etat="CONNEXION_INTERRUPTED";
@@ -126,5 +126,6 @@ class ClientThread extends Thread {
     public String getIp(){ return IP; }
     public int getPort(){return PORT; }
     public int getRef(){return REFRESH_TIME; }
+    public boolean getVrai(){ return vrai;}
 
 }

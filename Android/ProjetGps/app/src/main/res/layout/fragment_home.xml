@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FragmentHome">
+android:layout_height="match_parent"
 
-    <!-- TODO: Update blank fragment layout -->
+    >
 
+<!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/fond"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenue,\n\n Voici notre projet sur le pilotage\n d'un drone marin de surface. \n\n Ce projet se compose de trois vues: \n\n - vue 1: \n - vue 2:\n - vue 3:\n"
+            android:textColor="#FFFFFF"
+            android:textSize="50px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="200px"
+            />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_we_swipe_99"
+            />
+
+    </RelativeLayout>
 
 </FrameLayout>

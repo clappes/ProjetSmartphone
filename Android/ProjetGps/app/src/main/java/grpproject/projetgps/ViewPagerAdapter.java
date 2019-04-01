@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private boolean past=false;
-
     private ArrayList<Fragment> tab;
 
     public ViewPagerAdapter(FragmentManager fm) {
@@ -25,7 +23,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     }
     @Override
     public Fragment getItem(int i) {
-        return tab.get(i);
+       return  tab.get(i);
     }
 
     @Override

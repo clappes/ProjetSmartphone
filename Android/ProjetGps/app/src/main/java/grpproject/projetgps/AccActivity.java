@@ -114,47 +114,95 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        System.out.println("X : " + event.values[0] + " Y : " + event.values[1] + " Z : " + event.values[2]);
 
-        double Xmin = 8.0;
-        double part = 60.0/8.0;
-        double Xmax = 0.0;
-        double Z = 5.0;
-        double Y = 0.0;
-        double YMax = 4.0;
-        double YMin = -4.0;
+        bateau.rotation(event.values[1]);
 
-        if (Math.round(event.values[0]) < Xmin) {
+        Sensor sensor = event.sensor;
+        if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            System.out.println("X : " + event.values[0] + " Y : " + event.values[1] + " Z : " + event.values[2]);
 
-            if (Math.round(event.values[1]) > Y) {
+            double Xmin = 8.0;
+            double part = 60.0/8.0;
+            double Xmax = 0.0;
+            double Z = 5.0;
+            double Y = 0.0;
+            double YMid = 4.0;
+            double YMax = 9.0;
+            double YMin = -9.0;
 
-                System.out.println("A DROIIIITE");
-                setLongitude(getLongitude() + (vit/200000)*event.values[1]);
-                setLatitude(getLatitude() + (vit/200000)*event.values[1]);
+            if (Math.round(event.values[0]) < Xmin) {
 
-            } else if (Math.round(event.values[1]) < Math.round(Y)) {
+                vit =  ((Xmin-Math.round(event.values[0]))*part);
 
-                System.out.println("A GAUCHHHEEE");
-                setLongitude(getLongitude() - (vit/2000000)*-event.values[1]);
-                setLatitude(getLatitude() + (vit/200000)*-event.values[1]);
+                if(vit >= 60.0){
+                    vit = 60.0;
+                }
+                else if(Math.round(event.values[2]) <= Z){
+                    vit = 0.0;
+                }
+
+                setVit(vit);
+
             }
 
-            vit =  ((Xmin-Math.round(event.values[0]))*part);
-            if(vit >= 60.0){
-                vit = 60.0;
-            }
-            else if(Math.round(event.values[2]) <= Z){
-                vit = 0.0;
+            if(vit > 0){
+                if (Math.round(event.values[1]) > Y) {
+
+                    double angle = ((YMax-Math.round(event.values[1]))*(90/9));
+                    double var = Math.round(event.values[1])/YMax;
+
+                    System.out.println(var);
+                    System.out.println("A DROIIIITE");
+                    if(Math.round(event.values[1]) > YMid){
+                        setLongitude(getLongitude() + angle/2000);
+                        setLatitude(getLatitude() - angle/2000);
+                    }
+                    else{
+                        setLongitude(getLongitude() + (event.values[1]*event.values[0])/2000);
+                        setLatitude(getLatitude() + (event.values[1]*event.values[0])/2000);
+                    }
+
+
+                } else if (Math.round(event.values[1]) < Math.round(Y)) {
+
+                    double var = Math.round(event.values[1])/YMax;
+                    System.out.println("A GAUCHHHEEE");
+                    setLongitude(getLongitude() - (vit/2000000)*-event.values[1]);
+                    setLatitude(getLatitude() + (vit/200000)*-event.values[1]);
+                }
+
+                else{
+                    if(Math.round(event.values[2]) > Z) {
+                        setLatitude(getLatitude() + (vit / 20000));
+                    }
+                    else{
+                        setLatitude(getLatitude() - (vit / 20000));
+                    }
+
+                }
             }
 
-            setVit(vit);
-
+            vitesse.setText("Vitesse : "+getVit()+"km/h");
+            lat.setText("Latitude : " + getLatitude());
+            lon.setText("Longitude : " + getLongitude());
+            setMap(getLatitude(), getLongitude());
+        }
+        else if (sensor.getType() == Sensor.TYPE_GYROSCOPE) {
+            double mOrientation = 0.0;
+            mOrientation = event.values[0];
+           // draw(mOrientation);
         }
 
-        vitesse.setText("Vitesse : "+getVit()+"km/h");
-        lat.setText("Latitude : " + getLatitude());
-        lon.setText("Longitude : " + getLongitude());
-        setMap(getLatitude(), getLongitude());
+    }
+
+    public void draw(float angle) {
+        // Take the relevant Marker from the marker list where available in map
+      /*  AndroidMapGoogleOverlayItem myself = (AndroidMapGoogleOverlayItem) getOverlayItem(0);
+
+        if (myself == null) {
+            return;
+        }
+        myself.getMarker().setRotation(mOrientation);  // set the orientation value returned from the senserManager*/
     }
 
     @Override
@@ -167,6 +215,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         bateau.position(new LatLng(getLatitude(), getLongitude()));
+        bateau.flat(true);
         mMap.addMarker(bateau);
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(getLatitude(), getLongitude()))
                 .zoom(15).build()));
@@ -234,7 +283,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
         if(cpt%5==0) {
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(latit, longi))
-                    .zoom(15).build()));
+                    .zoom(11).build()));
         }
         cpt++;
 

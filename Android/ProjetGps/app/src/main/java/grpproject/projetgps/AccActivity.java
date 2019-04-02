@@ -1,40 +1,34 @@
 package grpproject.projetgps;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
 
 public class AccActivity extends AppCompatActivity implements SensorEventListener, OnMapReadyCallback {
 
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
-    private Sensor Sensor2;
-    private Button quit;
     private Button home;
+    private Button arret;
     private TextView vitesse;
     private TextView lat;
     private TextView lon;
@@ -48,13 +42,15 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     private double Z;
     private double vit;
     private int cpt;
-    public float frameTime = 0.666f;
+    private int cpt2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acc);
+
+        cpt2 = 1;
 
         X = 0.0;
         Y = 0.0;
@@ -85,20 +81,11 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         trajet = new PolylineOptions().geodesic(true).color(Color.RED).width(8);
         //mMap.clear();
 
-        quit = findViewById(R.id.frag2_quit);
-        quit.setText("QUITTER");
-
         home = findViewById(R.id.frag2_home);
         home.setText("HOME");
 
-        quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                senSensorManager.unregisterListener(AccActivity.this);
-                finish();
-
-            }
-        });
+        arret = findViewById(R.id.frag2_arret);
+        arret.setText("ARRET");
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,19 +97,36 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             }
         });
 
+        arret.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //senSensorManager.unregisterListener(AccActivity.this);
+
+                if(cpt2%2==0) {
+                    senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+                    arret.setText("ARRET");
+                }
+                else{
+                    senSensorManager.unregisterListener(AccActivity.this);
+                    arret.setText("RELANCER");
+                }
+                cpt2++;
+
+            }
+        });
+
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        bateau.rotation(event.values[1]);
-
         Sensor sensor = event.sensor;
         if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.out.println("X : " + event.values[0] + " Y : " + event.values[1] + " Z : " + event.values[2]);
 
+
             double Xmin = 8.0;
-            double part = 60.0/8.0;
+            double part = 60.0 / 8.0;
             double Xmax = 0.0;
             double Z = 5.0;
             double Y = 0.0;
@@ -130,14 +134,14 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             double YMax = 9.0;
             double YMin = -9.0;
 
+
             if (Math.round(event.values[0]) < Xmin) {
 
-                vit =  ((Xmin-Math.round(event.values[0]))*part);
+                vit = ((Xmin - Math.round(event.values[0])) * part);
 
-                if(vit >= 60.0){
+                if (vit >= 60.0) {
                     vit = 60.0;
-                }
-                else if(Math.round(event.values[2]) <= Z){
+                } else if (Math.round(event.values[2]) <= Z) {
                     vit = 0.0;
                 }
 
@@ -145,64 +149,28 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
             }
 
-            if(vit > 0){
-                if (Math.round(event.values[1]) > Y) {
+            if (vit > 0) {
 
-                    double angle = ((YMax-Math.round(event.values[1]))*(90/9));
-                    double var = Math.round(event.values[1])/YMax;
+                    if(Math.round(event.values[0]) <= YMid ) {
 
-                    System.out.println(var);
-                    System.out.println("A DROIIIITE");
-                    if(Math.round(event.values[1]) > YMid){
-                        setLongitude(getLongitude() + angle/2000);
-                        setLatitude(getLatitude() - angle/2000);
+                        setLatitude(getLatitude() - (event.values[0] / 70000));
+                        setLongitude(getLongitude() + (event.values[1] / 70000));
                     }
                     else{
-                        setLongitude(getLongitude() + (event.values[1]*event.values[0])/2000);
-                        setLatitude(getLatitude() + (event.values[1]*event.values[0])/2000);
-                    }
+
+                        setLatitude(getLatitude() + (event.values[0] / 70000));
+                        setLongitude(getLongitude() + (event.values[1] / 70000));
+
+                        }
 
 
-                } else if (Math.round(event.values[1]) < Math.round(Y)) {
-
-                    double var = Math.round(event.values[1])/YMax;
-                    System.out.println("A GAUCHHHEEE");
-                    setLongitude(getLongitude() - (vit/2000000)*-event.values[1]);
-                    setLatitude(getLatitude() + (vit/200000)*-event.values[1]);
-                }
-
-                else{
-                    if(Math.round(event.values[2]) > Z) {
-                        setLatitude(getLatitude() + (vit / 20000));
-                    }
-                    else{
-                        setLatitude(getLatitude() - (vit / 20000));
-                    }
-
-                }
             }
 
-            vitesse.setText("Vitesse : "+getVit()+"km/h");
+            vitesse.setText("Vitesse : " + getVit() + "km/h");
             lat.setText("Latitude : " + getLatitude());
             lon.setText("Longitude : " + getLongitude());
             setMap(getLatitude(), getLongitude());
         }
-        else if (sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-            double mOrientation = 0.0;
-            mOrientation = event.values[0];
-           // draw(mOrientation);
-        }
-
-    }
-
-    public void draw(float angle) {
-        // Take the relevant Marker from the marker list where available in map
-      /*  AndroidMapGoogleOverlayItem myself = (AndroidMapGoogleOverlayItem) getOverlayItem(0);
-
-        if (myself == null) {
-            return;
-        }
-        myself.getMarker().setRotation(mOrientation);  // set the orientation value returned from the senserManager*/
     }
 
     @Override
@@ -226,8 +194,6 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(AccActivity.this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-
-        //Sensor2 = senSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
     }
 
@@ -283,10 +249,24 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
         if(cpt%5==0) {
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(latit, longi))
-                    .zoom(11).build()));
+                    .zoom(15).build()));
         }
         cpt++;
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        senSensorManager.unregisterListener(AccActivity.this);
+        finish();
+    }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+    }*/
+
 
 }

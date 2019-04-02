@@ -92,6 +92,7 @@
                         <outlet property="connectedLabel" destination="Rrb-8Z-3HI" id="uav-tr-Syr"/>
                         <outlet property="latitude" destination="G78-du-N14" id="HsS-d5-72n"/>
                         <outlet property="longitude" destination="dEq-7a-FGI" id="7i4-eg-gWe"/>
+                        <outlet property="param" destination="c5Q-w2-N3h" id="K9B-Sp-9HL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

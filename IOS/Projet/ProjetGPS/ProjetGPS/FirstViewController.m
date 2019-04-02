@@ -12,8 +12,8 @@
 @end
 
 @implementation FirstViewController
-@synthesize carte, longitude, latitude,polyline,mapPointArray;
-
+@synthesize carte, longitude, latitude,polyline,mapPointArray,param;
+double direction = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _ipAddressText = @"127.0.0.1";
@@ -63,6 +63,8 @@
                 longitude.text = [NSString stringWithFormat:@"%f",val];
                 CLLocationDegrees longitudePoint = val;
                 
+                NSLog(@"ligne:  %@", [donnees objectAtIndexedSubscript:8]);
+                direction = [[donnees objectAtIndexedSubscript:8] doubleValue];
                 
                 NSString *lat = [donnees objectAtIndexedSubscript:3];
                 NSArray *arrayLatitude = [lat componentsSeparatedByString:@"."];
@@ -96,6 +98,7 @@
                 }
                 MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:[mapPointArray count]];
                 [carte addOverlay:polyline];
+                
             }
         
         
@@ -124,6 +127,15 @@
             pinView.calloutOffset = CGPointMake(0, 32);
         } else {
             pinView.annotation = annotation;
+            if(direction>180.0 && direction!=360.0){
+                pinView.image = [UIImage imageNamed:@"boat-rev"];
+                pinView.transform =                       CGAffineTransformRotate(self.carte.transform,(direction + 90)*3.14159265359/180);
+                NSLog(@"rot:  %s","rev");
+            }else{
+                pinView.image = [UIImage imageNamed:@"boat"];
+                pinView.transform =                       CGAffineTransformRotate(self.carte.transform,(direction - 90)*3.14159265359/180);
+                 NSLog(@"rot:  %s","norm");
+            }
         }
         return pinView;
     }
@@ -201,15 +213,19 @@
 
 - (IBAction)connectToServer:(id)sender {
     
-    NSLog(@"Setting up connection to %@ : %i", _ipAddressText, [_portText intValue]);
+    NSLog(@"Connection en cours %@ : %i", _ipAddressText, [_portText intValue]);
     CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (__bridge CFStringRef) _ipAddressText, [_portText intValue], &readStream, &writeStream);
     
     messages = [[NSMutableArray alloc] init];
     
+    [param setEnabled:NO];
+     
     [self open];
 }
 
 - (IBAction)disconnect:(id)sender {
+    
+    [param setEnabled:YES];
     
     [self close];
 }
@@ -263,8 +279,8 @@
                                                    UITextField *ip_textField = alert.textFields[0];
                                                    UITextField *port_textField = alert.textFields[1];
                                                    
-                                                   _ipAddressText = ip_textField.text;
-                                                   _portText = port_textField.text;
+                                                   self->_ipAddressText = ip_textField.text;
+                                                   self->_portText = port_textField.text;
                                                    
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault

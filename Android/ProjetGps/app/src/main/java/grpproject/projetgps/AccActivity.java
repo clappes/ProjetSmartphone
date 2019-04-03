@@ -134,7 +134,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             double YMin = -9.0;
 
 
-           /*if (Math.round(event.values[0]) < Xmin) {
+           if (Math.round(event.values[0]) < Xmin) {
 
                 vit = ((Xmin - Math.round(event.values[0])) * part);
 
@@ -147,22 +147,22 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
                 setVit(vit);
                 vitesse.setText("Vitesse : " + getVit() + "km/h");
 
-            }*/
+            }
 
-                        if (Math.round(event.values[1]) >= YMid) {
+            float seuil = 3;
+            if ( event.values[0] < -seuil ||  event.values[0] > seuil || event.values[1] < -seuil || event.values[1] > seuil) {
 
-                            setLatitude(getLatitude() - (event.values[0] / 100000));
-                            setLongitude(getLongitude() + (event.values[1] / 100000));
+                if(event.values[0] < Xmin){
+                    setLatitude(getLatitude() + (event.values[0] / 100000));
+                }
+                else{
+                    setLatitude(getLatitude() - (event.values[0] / 100000));
+                }
 
-                        } else {
+                setLongitude(getLongitude() + (event.values[1] / 100000));
 
-                            setLatitude(getLatitude() + (event.values[0] / 100000));
-                            setLongitude(getLongitude() + (event.values[1] / 100000));
-
-                        }
-
-                    }
-
+            }
+        }
 
             lat.setText("Latitude : " + getLatitude());
             lon.setText("Longitude : " + getLongitude());

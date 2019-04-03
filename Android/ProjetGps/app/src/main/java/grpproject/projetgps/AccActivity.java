@@ -20,8 +20,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-
 
 public class AccActivity extends AppCompatActivity implements SensorEventListener, OnMapReadyCallback {
 
@@ -43,6 +43,8 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     private double vit;
     private int cpt;
     private int cpt2;
+    Polyline polyline;
+    private int angle;
 
 
     @Override
@@ -73,13 +75,11 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             bateau = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_boat_marker)).anchor(0.5f, 0.5f);
         }
 
-        //Map
         SupportMapFragment mapFragment = (SupportMapFragment) AccActivity.this.getSupportFragmentManager()
                 .findFragmentById(R.id.frag2_map);
         mapFragment.getMapAsync(this);
 
         trajet = new PolylineOptions().geodesic(true).color(Color.RED).width(8);
-        //mMap.clear();
 
         home = findViewById(R.id.frag2_home);
         home.setText("HOME");
@@ -93,14 +93,14 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
                 setLatitude(46.14986608208221);
                 setLongitude(-1.1737993547569658);
                 setMap(getLatitude(),getLongitude());
-
+                polyline.remove();
+                trajet = new PolylineOptions().geodesic(true).color(Color.RED).width(8);
             }
         });
 
         arret.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //senSensorManager.unregisterListener(AccActivity.this);
 
                 if(cpt2%2==0) {
                     senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
@@ -124,7 +124,6 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.out.println("X : " + event.values[0] + " Y : " + event.values[1] + " Z : " + event.values[2]);
 
-
             double Xmin = 8.0;
             double part = 60.0 / 8.0;
             double Xmax = 0.0;
@@ -135,7 +134,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             double YMin = -9.0;
 
 
-            if (Math.round(event.values[0]) < Xmin) {
+           /*if (Math.round(event.values[0]) < Xmin) {
 
                 vit = ((Xmin - Math.round(event.values[0])) * part);
 
@@ -146,31 +145,29 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
                 }
 
                 setVit(vit);
+                vitesse.setText("Vitesse : " + getVit() + "km/h");
 
-            }
+            }*/
 
-            if (vit > 0) {
+                        if (Math.round(event.values[1]) >= YMid) {
 
-                    if(Math.round(event.values[0]) <= YMid ) {
+                            setLatitude(getLatitude() - (event.values[0] / 100000));
+                            setLongitude(getLongitude() + (event.values[1] / 100000));
 
-                        setLatitude(getLatitude() - (event.values[0] / 70000));
-                        setLongitude(getLongitude() + (event.values[1] / 70000));
-                    }
-                    else{
+                        } else {
 
-                        setLatitude(getLatitude() + (event.values[0] / 70000));
-                        setLongitude(getLongitude() + (event.values[1] / 70000));
+                            setLatitude(getLatitude() + (event.values[0] / 100000));
+                            setLongitude(getLongitude() + (event.values[1] / 100000));
 
                         }
 
+                    }
 
-            }
 
-            vitesse.setText("Vitesse : " + getVit() + "km/h");
             lat.setText("Latitude : " + getLatitude());
             lon.setText("Longitude : " + getLongitude());
             setMap(getLatitude(), getLongitude());
-        }
+
     }
 
     @Override
@@ -188,7 +185,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(getLatitude(), getLongitude()))
                 .zoom(15).build()));
         if(trajet!=null){
-            mMap.addPolyline(trajet);
+            polyline = mMap.addPolyline(trajet);
             mMap.addMarker(bateau);
         }
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -196,6 +193,35 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         senSensorManager.registerListener(AccActivity.this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
+
+    public void setMap(double latit, double longi) {
+
+        trajet.add(new LatLng(latit, longi));
+        mMap.clear();
+        polyline = mMap.addPolyline(trajet);
+        bateau.position(new LatLng(latit, longi));
+        mMap.addMarker(bateau.flat(true));
+
+        if(cpt%5==0) {
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(latit, longi))
+                    .zoom(15).build()));
+        }
+        cpt++;
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        senSensorManager.unregisterListener(AccActivity.this);
+        finish();
+    }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+    }*/
 
     public double getLatitude() {
         return latitude;
@@ -239,34 +265,13 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         this.vitesse = vitesse;
     }
 
-    public void setMap(double latit, double longi) {
-
-        trajet.add(new LatLng(latit, longi));
-        mMap.clear();
-        mMap.addPolyline(trajet);
-        bateau.position(new LatLng(latit, longi));
-        mMap.addMarker(bateau);
-
-        if(cpt%5==0) {
-            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(latit, longi))
-                    .zoom(15).build()));
-        }
-        cpt++;
-
+    public MarkerOptions getBateau() {
+        return bateau;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        senSensorManager.unregisterListener(AccActivity.this);
-        finish();
+    public void setBateau(MarkerOptions bateau) {
+        this.bateau = bateau;
     }
-
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-    }*/
 
 
 }

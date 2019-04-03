@@ -32,7 +32,7 @@ public class FragmentTwo extends Fragment {
 
         lancer = view.findViewById(R.id.frag2_simu);
         lancer.setTextColor(Color.parseColor("white"));
-        lancer.setText("Lancer Simu");
+        lancer.setText("Cliquez ici pour lancer la simulation");
 
         lancer.setOnClickListener(new View.OnClickListener() {
             @Override

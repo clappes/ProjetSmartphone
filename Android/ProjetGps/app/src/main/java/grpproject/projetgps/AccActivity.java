@@ -44,7 +44,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     private int cpt;
     private int cpt2;
     Polyline polyline;
-    private int angle;
+    private double barre = 1.5;
 
 
     @Override
@@ -124,44 +124,29 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.out.println("X : " + event.values[0] + " Y : " + event.values[1] + " Z : " + event.values[2]);
 
-            double Xmin = 8.0;
-            double part = 60.0 / 8.0;
-            double Xmax = 0.0;
-            double Z = 5.0;
-            double Y = 0.0;
-            double YMid = 4.0;
-            double YMax = 9.0;
-            double YMin = -9.0;
-
-
-           if (Math.round(event.values[0]) < Xmin) {
-
-                vit = ((Xmin - Math.round(event.values[0])) * part);
-
-                if (vit >= 60.0) {
-                    vit = 60.0;
-                } else if (Math.round(event.values[2]) <= Z) {
-                    vit = 0.0;
-                }
-
-                setVit(vit);
-                vitesse.setText("Vitesse : " + getVit() + "km/h");
-
+            if(event.values[2] >= 0 && event.values[0] > 0) {
+                vit = (event.values[2]*(60))/10;
+                vitesse.setText("Vitesse : " + vit + "km/h");
+            } else if(event.values[0] < 0) {
+                vit = 60;
+                vitesse.setText("Vitesse : " + vit + "km/h");
             }
+            if(event.values[1] < -2.5) {
+                barre = barre + 0.1;
 
-            float seuil = 3;
-            if ( event.values[0] < -seuil ||  event.values[0] > seuil || event.values[1] < -seuil || event.values[1] > seuil) {
-
-                if(event.values[0] < Xmin){
-                    setLatitude(getLatitude() + (event.values[0] / 100000));
+                if(barre < 30.0) {
+                    barre = 30.0;
                 }
-                else{
-                    setLatitude(getLatitude() - (event.values[0] / 100000));
+                } else if(event.values[1] > 2.5) {
+                barre = barre - 0.1;
+
+                if(barre < -30.0) {
+                    barre = -30.0;
+                }
                 }
 
-                setLongitude(getLongitude() + (event.values[1] / 100000));
-
-            }
+                setLatitude(getLatitude()+( Math.sin(barre) * (vit / 0.5))/1000000);
+                setLongitude(getLongitude() + (Math.cos(barre) * (vit / 0.5))/1000000);
         }
 
             lat.setText("Latitude : " + getLatitude());
@@ -188,6 +173,7 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
             polyline = mMap.addPolyline(trajet);
             mMap.addMarker(bateau);
         }
+
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(AccActivity.this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -217,12 +203,6 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         finish();
     }
 
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        senSensorManager.registerListener(AccActivity.this, senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-    }*/
-
     public double getLatitude() {
         return latitude;
     }
@@ -238,40 +218,5 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
-    public GoogleMap getmMap() {
-        return mMap;
-    }
-
-    public TextView getVitesse() {
-        return vitesse;
-    }
-
-    public double getVit() {
-        return vit;
-    }
-
-    public TextView getLat() {
-        return lat;
-    }
-
-    public TextView getLon() {
-        return lon;
-    }
-    public void setVit(double vit) {
-        this.vit = vit;
-    }
-    public void setVitesse(TextView vitesse) {
-        this.vitesse = vitesse;
-    }
-
-    public MarkerOptions getBateau() {
-        return bateau;
-    }
-
-    public void setBateau(MarkerOptions bateau) {
-        this.bateau = bateau;
-    }
-
 
 }

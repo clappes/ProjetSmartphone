@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.text.DecimalFormat;
+
 public class AccActivity extends AppCompatActivity implements SensorEventListener, OnMapReadyCallback {
 
     private SensorManager senSensorManager;
@@ -45,6 +47,8 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     private int cpt2;
     Polyline polyline;
     private double barre = 1.5;
+    private static DecimalFormat df3 = new DecimalFormat(".###");
+    private double angle = 180.0;
 
 
     @Override
@@ -126,31 +130,34 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
             if(event.values[2] >= 0 && event.values[0] > 0) {
                 vit = (event.values[2]*(60))/10;
-                vitesse.setText("Vitesse : " + vit + "km/h");
+                vitesse.setText("Vitesse : " + df3.format(vit) + "km/h");
             } else if(event.values[0] < 0) {
                 vit = 60;
-                vitesse.setText("Vitesse : " + vit + "km/h");
+                vitesse.setText("Vitesse : " + df3.format(vit) + "km/h");
             }
             if(event.values[1] < -2.5) {
                 barre = barre + 0.1;
+                angle = angle+1;
 
                 if(barre < 30.0) {
                     barre = 30.0;
-                }
+                    }
                 } else if(event.values[1] > 2.5) {
                 barre = barre - 0.1;
+                angle = angle-1;
 
                 if(barre < -30.0) {
                     barre = -30.0;
-                }
+                    }
                 }
 
                 setLatitude(getLatitude()+( Math.sin(barre) * (vit / 0.5))/1000000);
                 setLongitude(getLongitude() + (Math.cos(barre) * (vit / 0.5))/1000000);
         }
 
-            lat.setText("Latitude : " + getLatitude());
-            lon.setText("Longitude : " + getLongitude());
+            lat.setText("Latitude : " + df3.format(getLatitude()));
+            lon.setText("Longitude : " + df3.format(getLongitude()));
+
             setMap(getLatitude(), getLongitude());
 
     }
@@ -186,12 +193,15 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
         mMap.clear();
         polyline = mMap.addPolyline(trajet);
         bateau.position(new LatLng(latit, longi));
+
         mMap.addMarker(bateau.flat(true));
 
         if(cpt%5==0) {
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(latit, longi))
                     .zoom(15).build()));
         }
+
+
         cpt++;
 
     }

@@ -21,7 +21,6 @@
     NSMutableArray<NSValue*> *mapPointArray;
     UIButton *param;
     
-    
     NSMutableArray  *messages;
 }
 
@@ -32,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitude;
 @property (weak, nonatomic) IBOutlet UILabel *longitude;
+@property (weak, nonatomic) IBOutlet UILabel *vitesse;
 @property (retain, nonatomic) IBOutlet UIButton *param;
 @property(retain, nonatomic) IBOutlet MKMapView * carte;
 @property (retain, nonatomic) MKPolyline *polyline;

@@ -10,6 +10,7 @@
 
 @interface SecondViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *test;
 
 @end
 

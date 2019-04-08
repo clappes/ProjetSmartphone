@@ -12,14 +12,15 @@
 @end
 
 @implementation FirstViewController
-@synthesize carte, longitude, latitude,polyline,mapPointArray,param;
+@synthesize carte, longitude, latitude, polyline, vitesse, mapPointArray, param;
 double direction = 0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    carte.delegate = self;
     _ipAddressText = @"127.0.0.1";
     _portText = @"55555";
     mapPointArray = [NSMutableArray array];
-    carte.delegate = self;
     _connectedLabel.text = @"Disconnected";
 }
 
@@ -79,10 +80,16 @@ double direction = 0;
                 latitude.text = [NSString stringWithFormat:@"%f",val2];
                 CLLocationDegrees latitudePoint = val2;
                 
+                vitesse.text = [donnees objectAtIndexedSubscript:7];
                 
                 CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(latitudePoint, longitudePoint);
                 [mapPointArray addObject:[NSValue valueWithMKCoordinate:coord]];
-                [carte setCenterCoordinate:coord animated:true];
+                
+                MKCoordinateRegion region;
+                region.center = coord;
+                region.span.latitudeDelta = 0.005;
+                region.span.latitudeDelta = 0.005;
+                [carte setRegion:region animated:true];
                 
                 CLLocation *location = [[CLLocation alloc] initWithLatitude:latitudePoint longitude:longitudePoint   ];
                 
@@ -121,7 +128,6 @@ double direction = 0;
         {
             // If an existing pin view was not available, create one.
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
-            //pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
             pinView.image = [UIImage imageNamed:@"boat"];
             pinView.calloutOffset = CGPointMake(0, 32);
@@ -129,11 +135,11 @@ double direction = 0;
             pinView.annotation = annotation;
             if(direction>180.0 && direction!=360.0){
                 pinView.image = [UIImage imageNamed:@"boat-rev"];
-                pinView.transform =                       CGAffineTransformRotate(self.carte.transform,(direction + 90)*3.14159265359/180);
+                pinView.transform = CGAffineTransformRotate(self.carte.transform,(direction + 90)*M_PI/180);
                 NSLog(@"rot:  %s","rev");
             }else{
                 pinView.image = [UIImage imageNamed:@"boat"];
-                pinView.transform =                       CGAffineTransformRotate(self.carte.transform,(direction - 90)*3.14159265359/180);
+                pinView.transform =                       CGAffineTransformRotate(self.carte.transform,(direction - 90)*M_PI/180);
                  NSLog(@"rot:  %s","norm");
             }
         }
@@ -195,7 +201,11 @@ double direction = 0;
             break;
             
         case NSStreamEventErrorOccurred:
-            NSLog(@"%@",[theStream streamError].localizedDescription);
+            NSLog(@"Erreur :  %@",[theStream streamError].localizedDescription);
+            [theStream close];
+            [theStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            _connectedLabel.text = @"Serveur non trouvé";
+            NSLog(@"close stream");
             break;
             
         case NSStreamEventEndEncountered:
@@ -211,7 +221,7 @@ double direction = 0;
     
 }
 
-- (IBAction)connectToServer:(id)sender {
+- (void)connectToServer {
     
     NSLog(@"Connection en cours %@ : %i", _ipAddressText, [_portText intValue]);
     CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault, (__bridge CFStringRef) _ipAddressText, [_portText intValue], &readStream, &writeStream);
@@ -223,7 +233,7 @@ double direction = 0;
     [self open];
 }
 
-- (IBAction)disconnect:(id)sender {
+- (void)disconnect{
     
     [param setEnabled:YES];
     
@@ -305,4 +315,16 @@ double direction = 0;
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+- (IBAction)btDecoReco:(id)sender {
+    if ([[[sender titleLabel] text]  isEqual: @"Start"]) {
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        [self connectToServer];
+    }else{
+        [sender setTitle:@"Start" forState:UIControlStateNormal];
+        vitesse.text = @"0";
+        [self disconnect];
+    }
+}
+
 @end

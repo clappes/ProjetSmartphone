@@ -46,10 +46,8 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
     private int cpt;
     private int cpt2;
     Polyline polyline;
-    private double barre = 1.5;
+    private double angle = 0;
     private static DecimalFormat df3 = new DecimalFormat(".###");
-    private double angle = 180.0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +97,8 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
                 setMap(getLatitude(),getLongitude());
                 polyline.remove();
                 trajet = new PolylineOptions().geodesic(true).color(Color.RED).width(8);
+                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(getLatitude(), getLongitude()))
+                        .zoom(15).build()));
             }
         });
 
@@ -130,31 +130,21 @@ public class AccActivity extends AppCompatActivity implements SensorEventListene
 
             if(event.values[2] >= 0 && event.values[0] > 0) {
                 vit = (event.values[2]*(60))/10;
-                vitesse.setText("Vitesse : " + df3.format(vit) + "km/h");
             } else if(event.values[0] < 0) {
                 vit = 60;
-                vitesse.setText("Vitesse : " + df3.format(vit) + "km/h");
             }
             if(event.values[1] < -2.5) {
-                barre = barre + 0.1;
-                angle = angle+1;
+                    angle = angle - event.values[1]/100;
 
-                if(barre < 30.0) {
-                    barre = 30.0;
-                    }
                 } else if(event.values[1] > 2.5) {
-                barre = barre - 0.1;
-                angle = angle-1;
-
-                if(barre < -30.0) {
-                    barre = -30.0;
-                    }
+                    angle = angle - event.values[1]/100;
                 }
 
-                setLatitude(getLatitude()+( Math.sin(barre) * (vit / 0.5))/1000000);
-                setLongitude(getLongitude() + (Math.cos(barre) * (vit / 0.5))/1000000);
+                setLatitude(getLatitude()+( Math.sin(angle) * (vit / 0.5))/1000000);
+                setLongitude(getLongitude() + (Math.cos(angle) * (vit / 0.5))/1000000);
         }
 
+            vitesse.setText("Vitesse : " + df3.format(vit) + "km/h");
             lat.setText("Latitude : " + df3.format(getLatitude()));
             lon.setText("Longitude : " + df3.format(getLongitude()));
 

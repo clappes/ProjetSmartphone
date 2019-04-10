@@ -2,6 +2,7 @@ package grpproject.projetgps;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ public class FragmentTwo extends Fragment {
 
 
         lancer = view.findViewById(R.id.frag2_simu);
+        lancer.setTextColor(Color.parseColor("white"));
+        lancer.setText("Cliquez ici pour lancer la simulation");
 
         lancer.setOnClickListener(new View.OnClickListener() {
             @Override

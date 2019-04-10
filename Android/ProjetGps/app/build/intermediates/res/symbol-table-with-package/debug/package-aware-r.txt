@@ -1191,11 +1191,13 @@ id frag1_map
 id frag1_setting
 id frag1_start
 id frag1_vitesse
+id frag2_arret
+id frag2_home
 id frag2_map
-id frag2_quit
 id frag2_simu
 id frag3_clear
 id frag3_map
+id frag3_send
 id frag3_tracer
 id frag3_vit
 id ghost_view

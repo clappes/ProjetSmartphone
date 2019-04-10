@@ -23,7 +23,7 @@ android:layout_height="match_parent"
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bienvenue,\n\n Voici notre projet sur le pilotage\n d'un drone marin de surface. \n\n Ce projet se compose de trois vues: \n\n - vue 1: \n - vue 2:\n - vue 3:\n"
+            android:text="Bienvenue,\n\n \t\t\t Voici notre projet sur le pilotage\n d'un drone marin de surface. \n\n Ce projet se compose de trois vues: \n\n - vue 1: Simulation du drone\n\n - vue 2: Pilotage drone\n\n - vue 3: Création itinéraire\n"
             android:textColor="#FFFFFF"
             android:textSize="50px"
             android:layout_marginLeft="100px"

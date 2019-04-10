@@ -39,7 +39,10 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="Tracer"
+            android:background="#AAAAAA"
+            android:textColor="#FFFFFF"
             android:id="@+id/frag3_tracer"
+            android:textSize="18dp"
             />
 
         <Button
@@ -49,6 +52,7 @@
             android:text="Send"
             android:background="#00F500"
             android:textColor="#FFFFFF"
+            android:id="@+id/frag3_send"
             android:textSize="18dp"
             />
     </LinearLayout>

@@ -228,10 +228,12 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
                 lat=((int)lat)+Double.parseDouble(datas[3].substring(datas[3].indexOf(".")-2))/60;
                 lon=((int)lon)+Double.parseDouble(datas[5].substring(datas[5].indexOf(".")-2))/60;
 
-
+                //gestion N/S
                 if(datas[4].equals("S")){
                     lat=-1*lat;
                 }
+
+                //gestion W/E
                 if(datas[6].equals("W")){
                     lon=-1*lon;
                 }
@@ -244,6 +246,8 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
                 gmap.addPolyline(trajet);
                 bateau.position(new LatLng(lat,lon));
 
+
+                //Orientation bateau
                 double direction=Double.parseDouble(datas[8]);
                 if(direction>180.0 && direction!=360.0) {
                     bateau.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_boat_marker_rev));
@@ -256,6 +260,7 @@ public class FragmentOne extends Fragment implements OnMapReadyCallback{
 
                 gmap.addMarker(bateau);
 
+                //Suivi bateau toute les 10 trames recu
                 if(nbrTrame%10==0) {
                     gmap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition.Builder().target(new LatLng(lat, lon))
                             .zoom(17).build()));
